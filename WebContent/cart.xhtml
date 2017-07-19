@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html" 
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="./template.xhtml">
+
+    <ui:define name="title">
+        Cart
+    </ui:define>
+
+    <ui:define name="body">
+        
+        <h:panelGroup id="p1"  rendered="#{cartBean.total == 0}" layout="block" style="text-align:center">
+            <div  class="error">Your Cart is empty!</div>
+            <p/>
+            <h:commandButton value="Continue Shopping" action="home" />
+        </h:panelGroup>
+    
+        <h:panelGroup id="p2"  rendered="#{cartBean.total != 0}">
+                      
+        <table cellpadding="5pt" width="100%">
+          <tr><th>Book</th>  <th>Details </th> <th>Price </th> <th>&nbsp;</th> </tr>
+            
+        <ui:repeat value="#{cartBean.books}" var="book"> 
+             <tr>
+                 <td valign="top" align="center">
+                      <h:graphicImage  library="images"  name="#{book.bookid}.jpg"  width="100" height="100" />
+                    </td>
+                    <td>
+                       <span class="booktitle">#{book.title} </span>
+                       <br/>
+                       by  #{book.author}
+                       <br/>
+                       Publisher : #{book.publisher}
+                    </td>
+                    <td width="180px"> 
+                     Actual Price : <del>#{book.price}</del>
+                     <br/>
+                     Discount : #{book.discount}%
+                     <br/>
+                     Quantity : #{book.qty}
+                     <br/>
+                     You Pay :  <span class="bookprice">Rs. #{book.netPrice}</span>
+                    </td>
+                     <td>
+                           <h:commandButton id="delete"  actionListener="#{cartBean.deleteBook}" value="Delete">
+                             <f:param name="bookid" value="#{book.bookid}" />
+                        </h:commandButton>
+                     </td>
+                </tr>
+        </ui:repeat>
+        </table>
+        
+        <p/>
+        <div class="total">
+             Grand Total : Rs. #{cartBean.total} 
+             <br/>
+             <h:commandButton action="placeorder" value="Place Order"  />
+        </div>
+        <p/>
+       
+        </h:panelGroup>        
+         
+    </ui:define>
+
+</ui:composition>

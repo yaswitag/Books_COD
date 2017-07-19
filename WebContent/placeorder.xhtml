@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="title">
+        Place Order
+    </ui:define>
+
+    <ui:define name="body">
+        
+        <h:panelGrid columns="3">
+            <h:outputText value="Customer Name  :" />
+            <h:inputText id="customer" value="#{orderBean.customer}"   
+                         required="true" requiredMessage="Customer name is required!"/>
+            <h:message for="customer"/>
+            
+            <h:outputText value="Address :" />
+            <h:inputTextarea id="address" value="#{orderBean.address}" rows="3" cols="30" required="true" requiredMessage="Please enter address!" />
+            <h:message for="address"/>
+            
+            <h:outputText value="Email Address :" />
+            <h:inputText id="email" value="#{orderBean.email}" required="true"   requiredMessage="Email address is required!" />
+            <h:message for="email"/>
+            
+            <h:outputText value="Mobile Number :" />
+            <h:inputText id="mobile" value="#{orderBean.mobile}"  required="true"   requiredMessage="Mobile number is required" validatorMessage="Invalid mobile number. It must be 10 digit number!">
+                <f:validateRegex pattern="^[0-9]{10}$" />
+            </h:inputText>
+            <h:message for="mobile"/>
+        </h:panelGrid>
+        <p/>
+        <h:commandButton value="Confirm Order" action="#{orderBean.confirm}" />
+    </ui:define>
+
+</ui:composition>

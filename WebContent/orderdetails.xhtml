@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Order Details </ui:define>
+
+    <ui:define name="body">
+        <p/>
+        Enter your Order Id : <h:inputText id="orderid" value="#{orderBean.orderid}" />  
+
+        <h:commandButton value="Go" actionListener="#{orderBean.getDetails}">  
+            <f:ajax  execute="orderid" render="result" />
+        </h:commandButton>
+        
+        <p/>
+        <h:panelGroup id="result">
+        <h:panelGroup id="error" rendered="#{! orderBean.found}">
+            <span class="error">${orderBean.message}</span>
+        </h:panelGroup>
+        <h:panelGroup id="orderdetails" rendered="#{orderBean.found}">
+            <fieldset  style="border: 2px black solid">
+                <legend>Order Details</legend>
+                <h:panelGrid id="details" title="Order Details" summary="Order Details" columns="2"  columnClasses="colheading" >
+                    <h:outputText  value="Customer Name  " />
+                    <h:outputText  value="#{orderBean.customer}" />
+
+                    <h:outputText  value="Address to Ship  " /> 
+                    <h:outputText  value="#{orderBean.address}" />
+
+                    <h:outputText  value="Email Address  " />
+                    <h:outputText  value="#{orderBean.email}" />
+
+                    <h:outputText  value="Mobile Number   " />
+                    <h:outputText  value="#{orderBean.mobile}" />
+
+                    <h:outputText  value="Order Status  " />
+                    <h:outputText  value="#{orderBean.statusName}" />
+                </h:panelGrid>
+            </fieldset>
+        </h:panelGroup>
+        
+        
+        <h:panelGroup id="orderitems" rendered="#{orderBean.customer != null}">
+            <fieldset  style="border: 2px black solid">
+                <legend>Order Items</legend>
+                
+                <h:dataTable value="#{orderBean.books}" var="book" width="100%" cellpadding="5pt">
+                 <h:column>
+                        <f:facet name="header">
+                            Book
+                        </f:facet>
+                        <h:graphicImage  library="images"  name="#{book.bookid}.jpg"  width="100" height="100" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Details</f:facet>
+                        <span class="booktitle">#{book.title}</span>
+                        <br/>
+                        by  #{book.author}
+                        <br/>
+                        Publisher : #{book.publisher}
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header"> 
+                            Price
+                        </f:facet>
+                         Actual Price : <del>#{book.price}</del>
+                     <br/>
+                     Discount : #{book.discount}%
+                     <br/>
+                     Quantity : #{book.qty}
+                     <br/>
+                     You Pay :  <span class="bookprice">Rs. #{book.netPrice} </span>
+                     
+                    </h:column>
+                   
+                </h:dataTable>
+
+            
+            </fieldset>
+        </h:panelGroup>
+       
+        </h:panelGroup> 
+        
+        
+    </ui:define>
+
+</ui:composition>

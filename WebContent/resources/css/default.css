@@ -1,0 +1,81 @@
+
+.main
+{
+ background-color:white;
+ border-width:thick;
+ margin:5px auto;  
+ width:780px;
+ text-align:left;
+ overflow :   scroll;
+ height:  1000px;
+}
+
+.booktitle {
+    color:red;
+    font-family:verdana;
+    font-weight:bold;
+    font-size:12pt;
+}
+
+.error {
+    color:red;
+    font-family:verdana;
+    font-weight:bold;
+    font-size:12pt;
+}
+
+.bookprice {
+    color:navy;
+    font-family:verdana;
+    font-weight:bold;
+    font-size:11pt;
+}
+
+.total {
+    background-color: #eeeeee;
+    font-size:14pt;
+    font-weight:700;
+    color:black;
+    text-align: center;
+}
+th {
+    background-color:#dddddd;
+    font-weight:bold;
+    
+}
+.header
+{
+    background-color: red;
+    font-size:20pt;
+    font-weight:700;
+    color:white;
+    text-align:center;
+    letter-spacing:5pt;
+}
+.links
+{
+    background-color:#dddddd;
+    font-size:11pt;
+    font-weight:bold;
+    text-align: right;
+}
+
+.title {
+    background-color:black;
+    font-family: arial;
+    font-size:14pt;
+    font-weight:700;
+    color:white;
+}
+
+.colheading {
+    background-color:#dddddd;
+    font-weight: bold;
+}
+
+body { 
+    background-color: darkgray;
+    font-family:verdana;
+    font-size:10pt;
+}
+

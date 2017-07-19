@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title><ui:insert name="title">BooksForCOD.Com</ui:insert></title>
+        <h:outputStylesheet  library="css"  name="default.css"/>
+    </h:head>
+    <h:body>
+        <div class="main">
+            <div class="header">BooksForCOD.Com</div>
+            <div  class="links">
+                <a href="home.xhtml">Home</a> 
+                &nbsp;&nbsp;
+                <a href="cart.xhtml">Cart</a> 
+                &nbsp;&nbsp;
+                <a href="orderdetails.xhtml">Order Details</a> 
+            </div>
+            <div class="title"><ui:insert name="title"></ui:insert></div>
+            <p/>
+            <h:form>
+                <ui:insert name="body">Content Page</ui:insert>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

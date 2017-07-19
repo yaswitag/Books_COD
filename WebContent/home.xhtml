@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html" 
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="./template.xhtml">
+
+    <ui:define name="title">Search Books</ui:define>
+    <ui:define name="body">
+        By Title : <h:inputText id="title" value="#{bookBean.title}"/> 
+        <h:commandButton actionListener="#{bookBean.search}" value="Search" />
+        <p/>
+        <h:outputText styleClass="error" value="Sorry! No books were found by search!" 
+                      rendered="#{bookBean.books != null &amp;&amp; bookBean.books.size() == 0}" />
+        <table width="100%" cellpadding="5pt"> 
+            <ui:repeat var="book" value="#{bookBean.books}">
+                <tr>
+                    <td valign="top">
+                        <h:graphicImage  library="images"  name="#{book.bookid}.jpg"  width="100" height="100" />
+                    </td>
+                    <td>
+                        <span class="booktitle">#{book.title} </span>
+                        <br/>
+                        by  #{book.author}
+                        <br/>
+                        Publisher : #{book.publisher}
+                        <br/>
+                        Original Price : <del>#{book.price}</del>
+                        <br/>
+                        Discount : #{book.discount}%
+                        <br/>
+                        You Pay  : <span class="bookprice">Rs. #{book.netPrice}</span>
+                        <p/>
+                    </td>
+                    <td>
+                        <h:commandButton id="addtocart"  action="#{bookBean.addToCart}" value="Add To Cart">
+                            <f:param name="bookid" value="#{book.bookid}" />
+                        </h:commandButton>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <hr/>
+                    </td>
+                </tr>
+            </ui:repeat>
+        </table>
+
+    </ui:define>
+
+</ui:composition>
